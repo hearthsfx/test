@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "my-app",
-    "slug": "my-app",
+    "name": "HearthSFX",
+    "slug": "HearthSFX",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,7 +20,19 @@
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "config": {
+          "firebase": {
+              "apiKey": "AIzaSyBLbEvusiZaaXGqzR0vc_fg-ezs7nQSlEw",
+              "authDomain": "hearthsfx-cccf0.firebaseapp.com",
+              "databaseURL": "https://hearthsfx-cccf0.firebaseio.com",
+              "projectId": "hearthsfx-cccf0",
+              "storageBucket": "hearthsfx-cccf0.appspot.com",
+              "messagingSenderId": "774447561604",
+              "appId": "1:774447561604:web:d6351e64c8823cadc9fbd1",
+              "measurementId": "G-7RDCBL4B6M"
+        }
+      }
     }
   }
 }

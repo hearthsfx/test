@@ -1,23 +1,53 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "homepage": "http://hearthsfx.github.io/test",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "deploy": "gh-pages -d web-build",
+    "predeploy": "expo build:web"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.1.0",
+    "@expo-google-fonts/roboto": "^0.1.0",
+    "@react-native-community/audio-toolkit": "^2.0.3",
+    "@react-native-community/clipboard": "^1.2.3",
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-native-firebase/analytics": "^7.4.2",
+    "@react-native-firebase/app": "^8.3.1",
+    "@react-navigation/bottom-tabs": "^5.7.2",
+    "@react-navigation/native": "^5.7.1",
+    "@react-navigation/stack": "^5.7.1",
     "expo": "~38.0.8",
+    "expo-av": "~8.2.1",
+    "expo-firebase-analytics": "~2.4.1",
+    "expo-firebase-core": "~1.1.1",
+    "expo-font": "~8.2.1",
     "expo-status-bar": "^1.0.2",
+    "firebase": "^7.18.0",
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
-    "react-native-web": "~0.11.7"
+    "react-native-gesture-handler": "~1.6.0",
+    "react-native-google-analytics-bridge": "^7.1.0",
+    "react-native-material-ui": "^1.30.1",
+    "react-native-reanimated": "~1.9.0",
+    "react-native-safe-area-context": "~3.0.7",
+    "react-native-screens": "~2.9.0",
+    "react-native-swift": "^1.2.3",
+    "react-native-track-player": "^1.2.3",
+    "react-native-vector-icons": "^7.0.0",
+    "react-native-web": "~0.11.7",
+    "react-navigation": "^4.4.0",
+    "yarn": "^1.22.4"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
-    "babel-preset-expo": "~8.1.0"
+    "babel-preset-expo": "~8.1.0",
+    "gh-pages": "^3.1.0"
   },
   "private": true
 }

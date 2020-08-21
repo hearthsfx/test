@@ -1,0 +1,682 @@
+[
+    {
+        "parentID": "HERO_01a",
+        "specialID": "EX1_409",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_01c",
+        "specialID": "EX1_392",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_01c",
+        "specialID": "LOOT_417",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_01c",
+        "specialID": "GVG_052",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_01c",
+        "specialID": "TRL_362",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_01c",
+        "specialID": "CS2_108",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_01c",
+        "specialID": "LOOT_370",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_01c",
+        "specialID": "TRL_324",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_01c",
+        "specialID": "UNG_923",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_01c",
+        "specialID": "DREAM_05",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_01c",
+        "specialID": "DAL_062",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02c",
+        "specialID": "EX1_259",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02c",
+        "specialID": "OG_206",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02c",
+        "specialID": "BOT_245",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02c",
+        "specialID": "YOD_042",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "HERO_10",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "HERO_03a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "HERO_02a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "HERO_09a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "CS2_038",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "EX1_245",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "LOE_113",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "EX1_251",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "EX1_259",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "TRL_057",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "LOOT_504",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_02e",
+        "specialID": "DAL_432",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_03a",
+        "specialID": "HERO_10",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_05",
+        "specialID": "NEW1_031",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05a",
+        "specialID": "EX1_617",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05b",
+        "specialID": "NEW1_031",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05c",
+        "specialID": "DS1_185",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05c",
+        "specialID": "EX1_617",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05c",
+        "specialID": "EX1_537",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05c",
+        "specialID": "EX1_544",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05c",
+        "specialID": "CS2_084",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05c",
+        "specialID": "EX1_539",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05c",
+        "specialID": "DS1_183",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05c",
+        "specialID": "ICC_052",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05c",
+        "specialID": "TRL_566",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05c",
+        "specialID": "ICC_049",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_05c",
+        "specialID": "DS1_184",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_06",
+        "specialID": "HERO_09a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_06",
+        "specialID": "HERO_10",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_06a",
+        "specialID": "HERO_06",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_06a",
+        "specialID": "AT_043",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_06a",
+        "specialID": "GVG_033",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_06b",
+        "specialID": "EX1_571",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_06b",
+        "specialID": "CS2_007",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_06b",
+        "specialID": "EX1_578",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_06b",
+        "specialID": "CS2_012",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_06c",
+        "specialID": "HERO_09a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_06c",
+        "specialID": "HERO_10",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_06d",
+        "specialID": "HERO_06",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_07a",
+        "specialID": "OG_239",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_07a",
+        "specialID": "OG_118",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_07b",
+        "specialID": "OG_239",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_07b",
+        "specialID": "OG_118",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_08a",
+        "specialID": "GVG_003",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_08e",
+        "specialID": "HERO_04b",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_08e",
+        "specialID": "HERO_08",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_08e",
+        "specialID": "HERO_05c",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_08e",
+        "specialID": "CS2_028",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_08e",
+        "specialID": "EX1_275",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_08e",
+        "specialID": "BT_072",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_08e",
+        "specialID": "BT_006",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_08e",
+        "specialID": "CS2_026",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_08e",
+        "specialID": "CS2_024",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_08e",
+        "specialID": "EX1_179",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_08e",
+        "specialID": "GIL_801",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_09a",
+        "specialID": "HERO_06",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_09a",
+        "specialID": "HERO_10",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "HERO_04b",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "HERO_03a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "HERO_06",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "HERO_07b",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "HERO_09a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "HERO_02e",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "BT_173",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "BT_512",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "BT_753",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "BT_429",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "BT_601",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10",
+        "specialID": "BT_491",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "HERO_04b",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "HERO_03a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "HERO_06",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "HERO_07b",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "HERO_09a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "HERO_02e",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "BT_173",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "BT_512",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "BT_753",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "BT_429",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "BT_601",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10a",
+        "specialID": "BT_491",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "HERO_06b",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "HERO_10",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "HERO_03a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "HERO_07b",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "HERO_09a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "BT_354",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "BT_490",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "BT_036",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "BT_427",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "BT_512",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "BT_429",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_10b",
+        "specialID": "BT_491",
+        "action": "When Played"
+    },
+    {
+        "parentID": "EX1_323h",
+        "specialID": "EX1_tk33",
+        "action": "When Activated"
+    },
+    {
+        "parentID": "EX1_323h",
+        "specialID": "AT_027",
+        "action": "When Played"
+    },
+    {
+        "parentID": "CS2_122",
+        "specialID": "KARA_08_01",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "CS2_122",
+        "specialID": "KARA_08_01",
+        "action": "When Attacking Against"
+    },
+    {
+        "parentID": "CS2_122",
+        "specialID": "KARA_08_01",
+        "action": "When Dying Against"
+    },
+    {
+        "parentID": "EX1_110",
+        "specialID": "HERO_01",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "GVG_014",
+        "specialID": "HERO_01",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "AT_027",
+        "specialID": "EX1_323h",
+        "action": "When Played While Active"
+    },
+    {
+        "parentID": "AT_072",
+        "specialID": "HERO_09",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "LOE_077",
+        "specialID": "HERO_01a",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "OG_044",
+        "specialID": "HERO_09a",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "KAR_096",
+        "specialID": "KAR_096",
+        "action": "When Played After"
+    },
+    {
+        "parentID": "GIL_598",
+        "specialID": "GIL_692",
+        "action": "When Played While Active"
+    },
+    {
+        "parentID": "GIL_598",
+        "specialID": "EX1_016",
+        "action": "When Played While Active"
+    },
+    {
+        "parentID": "GIL_692",
+        "specialID": "GIL_598",
+        "action": "When Played While Active"
+    },
+    {
+        "parentID": "DAL_064",
+        "specialID": "BOT_238",
+        "action": "When Played While Active"
+    },
+    {
+        "parentID": "DAL_379",
+        "specialID": "HERO_01",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "DAL_431",
+        "specialID": "GIL_504",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "DAL_431",
+        "specialID": "GIL_504",
+        "action": "When Played As"
+    },
+    {
+        "parentID": "DAL_575",
+        "specialID": "HERO_08b",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "DAL_575",
+        "specialID": "HERO_08a",
+        "action": "When Played As"
+    },
+    {
+        "parentID": "ULD_500",
+        "specialID": "HERO_02a",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "BT_713",
+        "specialID": "HERO_10",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "BT_713",
+        "specialID": "HERO_03a",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "BT_334",
+        "specialID": "HERO_04a",
+        "action": "When Played Against"
+    },
+    {
+        "parentID": "SCH_224",
+        "specialID": "SCH_224t",
+        "action": "When Cat Played"
+    },
+    {
+        "parentID": "SCH_224",
+        "specialID": "SCH_224t",
+        "action": "When 6 Cats Played"
+    },
+    {
+        "parentID": "SCH_224",
+        "specialID": "SCH_224t",
+        "action": "When Killed"
+    }
+]
