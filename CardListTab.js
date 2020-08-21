@@ -170,7 +170,7 @@ const CardListTab = ( { route, navigation, state }) => {
         && (x.set === cardSet || cardSet === null)
         && (x.collectible == true || tokenIDs.includes(includeNonCollectible ? x.id : 'N/A'))).length && showFooter) ?
         <TouchableOpacity style={styles.button} onPress= {() => {
-          filterCards(null, true, false)
+          filterCards(null, false, true)
           setLoadLimit(loadLimit+100)
         }}>
           <Text style={styles.text}>Load More</Text>
