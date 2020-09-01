@@ -29,9 +29,8 @@ const MinionSounds = (props) => {
       </View>
       : <></>
     }
-    {['SCH_239','SCH_271t','SCH_357t','SCH_605','SCH_612t','SCH_616','SCH_711','SCH_714','DAL_357t','LOOT_131t1'].includes(props.card.id)
-      ? (['UNG_065t','DAL_357t'].includes(props.card.id)) ?
-
+    {['DAL_357t','LOOT_131t1','BGS_046t'].includes(props.card.id)
+      ? (['UNG_065t','DAL_357t','BGS_046t'].includes(props.card.id)) ?
           <View style = {{paddingBottom: 8, alignItems: 'center'}}>
             <Text>{"This card has no sounds!"}</Text>
           </View>

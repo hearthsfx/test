@@ -6,28 +6,42 @@ import SpecialsFlatList from './SpecialsFlatList';
 import Specials from './Specials';
 import SoundDivider from './SoundDivider'
 import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
-import heroes from './assets/heroes.json';
 import { Ionicons } from '@expo/vector-icons';
+import {sortCards, tokenIDs, heroIDs, battlegroundFlavor, battlegroundRetired, battlegroundCard} from './HelperFunctions'
 
 const Card = (props) => {
 
   const scrollViewRef = React.useRef()
 
-  const heroIDs = heroes.map(a => a.id)
+  const imgSrc = getImage(props.card.id)
   const isHero = heroIDs.includes(props.card.id)
-  const imgSrc = ((isHero || props.card.id == 'EX1_323h') ?
-    'https://hearthstonesounds.s3.amazonaws.com/' :
-    'https://art.hearthstonejson.com/v1/render/latest/enUS/256x/')
-     + props.card.id + '.png'
+
+  function getImage(cardID) {
+    if (isHero || cardID == 'EX1_323h') {
+      return 'https://hearthstonesounds.s3.amazonaws.com/' + cardID + '.png'
+    } else if (props.battlegrounds) {
+      return 'https://hearthstonesounds.s3.amazonaws.com/' + cardID + '_BG.png'
+    } else {
+      return 'https://art.hearthstonejson.com/v1/render/latest/enUS/256x/' + cardID + '.png'
+    }
+  }
 
   function goToTop() {
       scrollViewRef.current.scrollTo({ animated: true, x: 0 })
   }
 
   function findFlavor() {
-    return isHero
-      ? heroes.find(x => x.id == props.card.id).flavorText
-      : props.card.flavor
+    if (isHero) {
+      return heroes.find(x => x.id == props.card.id).flavorText
+    }
+    else if (!props.battlegrounds) {
+      return props.card.flavor
+    }
+    else if (props.battlegrounds && battlegroundCard(props.card.id).heroSpecific) {
+      return battlegroundFlavor(props.card.id)
+    } else if (props.battlegrounds && battlegroundRetired(props.card.id)) {
+      return 'This card is retired and no longer appears in Battlegrounds.'
+    }
   }
 
   const openNewCard = (newID) => {
@@ -64,13 +78,16 @@ const Card = (props) => {
       <View style={{ flex: 1, padding: 8, alignItems: 'center'}}>
       {isHero
         ? <Image source={{uri: imgSrc}} style={{width: 250, height: 345}}/>
-        : <Image source={{uri: imgSrc}} style={{width: 256, height: 388}}/>
+        :
+          props.battlegrounds
+          ? <Image source={{uri: imgSrc}} style={{width: 286, height: 395}}/>
+          : <Image source={{uri: imgSrc}} style={{width: 256, height: 388}}/>
       }
       <ScrollView style={{width: 512}} ref={scrollViewRef}>
           <Text style={{width: 512, padding: 16}}>{findFlavor()}</Text>
           <SoundDivider/>
           <SoundLayout card={props.card}/>
-          <TokensFlatList cardID={props.card.id} openNewCard={openNewCard} closeCard={closeCards}/>
+          <TokensFlatList cardID={props.card.id} openNewCard={openNewCard} closeCard={closeCards} battlegrounds={props.battlegrounds}/>
           <SpecialsFlatList cardID={props.card.id} openNewCard={openNewCard} closeCard={closeCards}/>
           <Specials cardID={props.card.id}/>
       </ScrollView>

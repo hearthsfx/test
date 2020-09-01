@@ -13,6 +13,7 @@ import Reno from './customLayouts/Reno'
 import LordJaraxxus from './customLayouts/LordJaraxxus'
 import Medivh from './customLayouts/Medivh'
 import Galakronds from './customLayouts/Galakronds'
+import Ragnaros from './customLayouts/Ragnaros'
 import { View, Text } from 'react-native';
 
 const HeroSounds = (props) => {
