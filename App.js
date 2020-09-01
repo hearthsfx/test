@@ -17,6 +17,7 @@ const App = ({navigation}) => {
 
     <NavigationContainer>
       <Tab.Navigator>
+        <Tab.Screen name="Battlegrounds" component={CardListTab} initialParams = {{cardSet: null, typeFilter: "BATTLEGROUNDS"}} />
         <Tab.Screen name="Cards" component={CardListTab} initialParams = {{cardSet: null, typeFilter: "MINION"}} />
         <Tab.Screen name="Heroes" component={CardListTab} initialParams = {{cardSet: null, typeFilter: "HERO"}} />
         <Tab.Screen name="Sets" component={SetList}/>

@@ -1,0 +1,646 @@
+[
+        {
+            "cardID": "CFM_315",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "CFM_315t",
+            "tribe": "Beast",
+            "token": "1"
+        },
+        {
+            "cardID": "EX1_531",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "YOD_026",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "LOOT_013",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "TB_BaconUps_079",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "BGS_039",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BGS_019",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BOT_445",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BOT_445t",
+            "tribe": "Mech",
+            "token": "1"
+        },
+        {
+            "cardID": "BGS_027",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "EX1_509",
+            "tribe": "Murloc"
+        },
+        {
+            "cardID": "EX1_506",
+            "tribe": "Murloc"
+        },
+        {
+            "cardID": "EX1_506a",
+            "tribe": "Murloc",
+            "token": "1"
+        },
+        {
+            "cardID": "UNG_073",
+            "tribe": "Murloc"
+        },
+        {
+            "cardID": "BGS_055",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "BGS_061",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "BGS_061t",
+            "tribe": "Pirate",
+            "token": "1"
+        },
+        {
+            "cardID": "ICC_038",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "OG_221",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "KAR_005",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "KAR_005a",
+            "tribe": "Beast",
+            "token": "1"
+        },
+        {
+            "cardID": "BGS_017",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "BGS_075",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "BGS_014",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "BRM_006t",
+            "tribe": "Demon",
+            "token": "1"
+        },
+        {
+            "cardID": "BGS_001",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "BGS_045",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BGS_037",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BGS_035",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "EX1_556",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "skele21",
+            "tribe": "Mech",
+            "token": "1"
+        },
+        {
+            "cardID": "BOT_606",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "GVG_048",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BGS_028",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "EX1_507",
+            "tribe": "Murloc"
+        },
+        {
+            "cardID": "EX1_062",
+            "tribe": "Murloc"
+        },
+        {
+            "cardID": "BGS_049",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "NEW1_027",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "BGS_006",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "OG_256",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "FP1_024",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "OG_216",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "OG_216a",
+            "tribe": "Beast",
+            "token": "1"
+        },
+        {
+            "cardID": "BGS_078",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "EX1_577",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "EX1_finkle",
+            "tribe": "Beast",
+            "token": "1"
+        },
+        {
+            "cardID": "DS1_070",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "CFM_316",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "CFM_316t",
+            "tribe": "Beast",
+            "token": "1"
+        },
+        {
+            "cardID": "BRM_006",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "CFM_610",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "BGS_002",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "BGS_034",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BGS_033",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BGS_038",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BGS_071",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BGS_023",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "GVG_055",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BOT_312",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BOT_312t",
+            "tribe": "Mech",
+            "token": "1"
+        },
+        {
+            "cardID": "EX1_103",
+            "tribe": "Murloc"
+        },
+        {
+            "cardID": "BT_010",
+            "tribe": "Murloc"
+        },
+        {
+            "cardID": "BGS_053",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "BGS_081",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "BGS_060",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "AT_121",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "DAL_575",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "BGS_029",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "LOOT_078",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "EX1_534",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "EX1_534t",
+            "tribe": "Beast",
+            "token": "1"
+        },
+        {
+            "cardID": "CFM_816",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "GVG_100",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "EX1_185",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "ICC_029",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BGS_067",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BGS_032",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BOT_911",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "GVG_027",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BOT_537",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BOT_537t",
+            "tribe": "Mech",
+            "token": "1"
+        },
+        {
+            "cardID": "BOT_218",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BOT_218t",
+            "tribe": "Mech",
+            "token": "1"
+        },
+        {
+            "cardID": "BGS_020",
+            "tribe": "Murloc"
+        },
+        {
+            "cardID": "DAL_077",
+            "tribe": "Murloc"
+        },
+        {
+            "cardID": "BGS_066",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "BGS_056",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "BGS_048",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "ICC_858",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "EX1_093",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "BGS_083",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "TRL_232",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "TRL_232t",
+            "tribe": "Beast",
+            "token": "1"
+        },
+        {
+            "cardID": "BGS_021",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "BGS_010",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "GVG_021",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "LOOT_368",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "CS2_065",
+            "tribe": "Demon",
+            "token": "1"
+        },
+        {
+            "cardID": "BGS_043",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BGS_036",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "GVG_106",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BGS_006",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BGS_030",
+            "tribe": "Murloc"
+        },
+        {
+            "cardID": "BGS_072",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "BGS_046",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "BGS_080",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "FP1_031",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "LOE_077",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "ICC_807",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "BGS_009",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "BGS_008",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "BGS_018",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "FP1_010",
+            "tribe": "Beast"
+        },
+        {
+            "cardID": "BGS_044",
+            "tribe": "Demon"
+        },
+        {
+            "cardID": "BGS_041",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "BGS_040",
+            "tribe": "Dragon"
+        },
+        {
+            "cardID": "GVG_113",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BGS_012",
+            "tribe": "Mech"
+        },
+        {
+            "cardID": "BGS_047",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "BGS_079",
+            "tribe": "Pirate"
+        },
+        {
+            "cardID": "BGS_069",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "BGS_022",
+            "tribe": "Neutral"
+        },
+        {
+            "cardID": "UNG_999t2t1",
+            "tribe": "Neutral",
+            "token": "1"
+        },
+        {
+            "cardID": "TB_BaconShop_HP_033t",
+            "tribe": "Neutral",
+            "heroSpecific": "1",
+            "flavor": "Hero-specific minion for The Curator."
+        },
+        {
+            "cardID": "TB_BaconShop_HP_008a",
+            "tribe": "Neutral",
+            "heroSpecific": "1",
+            "flavor": "Hero-specific spell for Lich Baz'hial and Trade Prince Gallywix"
+        },
+        {
+            "cardID": "TB_BaconShop_HP_047t",
+            "tribe": "Neutral",
+            "heroSpecific": "1",
+            "flavor": "Hero-specific spell for Elise Starseeker"
+        },
+        {
+            "cardID": "EX1_170",
+            "tribe": "Neutral",
+            "heroSpecific": "1",
+            "flavor": "Hero-specific minion for The Great Akazamzarak."
+        },
+        {
+            "cardID": "EX1_554t",
+            "tribe": "Neutral",
+            "heroSpecific": "1",
+            "flavor": "Hero-specific minion for The Great Akazamzarak."
+        },
+        {
+            "cardID": "EX1_162",
+            "tribe": "Beast",
+            "retired": "1"
+        },
+        {
+            "cardID": "GVG_085",
+            "tribe": "Mech",
+            "retired": "1"
+        },
+        {
+            "cardID": "BGS_077",
+            "tribe": "Pirate",
+            "retired": "1"
+        },
+        {
+            "cardID": "BGS_025",
+            "tribe": "Beast",
+            "retired": "1"
+        },
+        {
+            "cardID": "GIL_681",
+            "tribe": "Neutral",
+            "retired": "1"
+        },
+        {
+            "cardID": "GVG_058",
+            "tribe": "Mech",
+            "retired": "1"
+        },
+        {
+            "cardID": "KAR_095",
+            "tribe": "Neutral",
+            "retired": "1"
+        },
+        {
+            "cardID": "GVG_062",
+            "tribe": "Mech",
+            "retired": "1"
+        },
+        {
+            "cardID": "OG_145",
+            "tribe": "Neutral",
+            "retired": "1"
+        },
+        {
+            "cardID": "ULD_179",
+            "tribe": "Neutral",
+            "retired": "1"
+        },
+        {
+            "cardID": "UNG_037",
+            "tribe": "Neutral",
+            "retired": "1"
+        },
+        {
+            "cardID": "GIL_655",
+            "tribe": "Neutral",
+            "retired": "1"
+        },
+        {
+            "cardID": "KAR_702",
+            "tribe": "Neutral",
+            "retired": "1"
+        },
+        {
+            "cardID": "BGS_024",
+            "tribe": "Mech",
+            "retired": "1"
+        },
+        {
+            "cardID": "OG_300",
+            "tribe": "Neutral",
+            "retired": "1"
+        },
+        {
+            "cardID": "UNG_010",
+            "tribe": "Beast",
+            "retired": "1"
+        },
+        {
+            "cardID": "BGS_068",
+            "tribe": "Murloc",
+            "retired": "1"
+        },
+        {
+            "cardID": "BGS_031",
+            "tribe": "Murloc",
+            "retired": "1"
+        },
+        {
+            "cardID": "UNG_201t",
+            "tribe": "Beast",
+            "token": "1",
+            "retired": "1"
+        },
+        {
+            "cardID": "BGS_046t",
+            "tribe": "Pirate",
+            "retired": "1"
+        }
+    ]

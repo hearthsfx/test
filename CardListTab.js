@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity, TouchableWithoutFeedback, FlatList, StatusBar, Switch, Linking } from 'react-native';
 import data from './assets/cards.json';
 import SmallClassImage from './SmallClassImage';
+import TechLevelImage from './TechLevelImage'
+import TribeImage from './TribeImage'
 import SoundButton from './SoundButton';
 import SoundDivider from './SoundDivider';
 import Card from './Card';
@@ -12,20 +14,19 @@ import { Toolbar } from 'react-native-material-ui';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ToolbarTitle from './ToolbarTitle'
 import * as Analytics from 'expo-firebase-analytics';
-import {sortCards, tokenIDs, heroIDs} from './HelperFunctions'
+import {sortCards, tokenIDs, heroIDs, battlegroundsIDs, battlegroundTribe, battlegroundToken, battlegroundHeroSpecific, battlegroundFlavor, battlegroundRetired, battlegroundTechLevel} from './HelperFunctions'
 
 const CardListTab = ( { route, navigation, state }) => {
 
   // State variables
-  const [includeMinions, setIncludeMinions] = useState(true)
-  const [includeHeroes, setIncludeHeroes] = useState(true)
-  const [includeSpells, setIncludeSpells] = useState(false)
-  const [includeWeapons, setIncludeWeapons] = useState(false)
   const [includeNonCollectible, setIncludeNonCollectible] = useState(false)
-  const [includeCommons, setIncludeCommons] = useState(true)
-  const [includeRares, setIncludeRares] = useState(true)
-  const [includeEpics, setIncludeEpics] = useState(true)
-  const [includeLegendaries, setIncludeLegendaries] = useState(true)
+  const [includeRarities, setIncludeRarities] = useState([[[undefined,'FREE','COMMON'], true], ['RARE', true], ['EPIC', true], ['LEGENDARY', true]]) // Array represents Free/Common, Rare, Epic, Legendary
+  const [includeTypes, setIncludeTypes] = useState([['MINION',true], ['HERO',true], ['SPELL',false], ['WEAPON',false]]) // Array represents Minions, Heroes, Spells, Weapons
+  const [includeBGTokens, setIncludeBGTokens] = useState(false)
+  const [includeBGHeroSpecific, setIncludeBGHeroSpecific] = useState(false)
+  const [includeBGRetired, setIncludeBGRetired] = useState(false)
+  const [includeBGTiers, setIncludeBGTiers] = useState([[1, true], [2, true], [3, true], [4, true], [5, true], [6, true]]) // Array represents Tier 1, 2, ...
+  const [includeBGTribes, setIncludeBGTribes] = useState([['Beast',true],['Demon',true],['Dragon',true],['Mech',true],['Murloc',true],['Pirate',true],['Neutral',true]])
   const [cardDisplayed, setCardDisplayed] = useState('none')
   const [card, setCard] = useState(data[0])
   const [myCardData, setMyCardData] = useState([])
@@ -45,52 +46,64 @@ const CardListTab = ( { route, navigation, state }) => {
   var myData = filterData()
 
   function filterData() {
-
-    var filteredData
-
     if (typeFilter == 'MINION') {
-      filteredData = data.filter(x => (!heroIDs.includes(x.id)))
-    } else {
-      filteredData = data.filter(x => heroIDs.includes(x.id))
+      return sortCards(data.filter(x => (!heroIDs.includes(x.id))), 'MINION')
+    } else if (typeFilter == 'HERO') {
+      return sortCards(data.filter(x => heroIDs.includes(x.id)), 'HERO')
+    } else if (typeFilter == 'BATTLEGROUNDS') {
+      return sortCards(data.filter(x => (battlegroundsIDs.includes(x.id))), 'BATTLEGROUNDS')
     }
-
-    return (sortCards(filteredData))
   }
 
   function filterCards(searchCriteria, applyLoadLimit, increaseLoadLimit,
-    newMinionFilter, newHeroFilter, newSpellFilter, newWeaponFilter, newNonCollectibleFilter,
-    newCommonFilter, newRareFilter, newEpicFilter, newLegendaryFilter) {
-    var filteredData = myData.filter(x =>
-      (
-        x.type == (((newMinionFilter == null) ? includeMinions : newMinionFilter) ? 'MINION' : '') ||
-        x.type == (((newHeroFilter   == null) ? includeHeroes  : newHeroFilter  ) ? 'HERO'   : '') ||
-        x.type == (((newSpellFilter  == null) ? includeSpells  : newSpellFilter ) ? 'SPELL'  : '') ||
-        x.type == (((newWeaponFilter == null) ? includeWeapons : newWeaponFilter) ? 'WEAPON' : '')
-      )
-      &&
-      (
-        [
-          (((newCommonFilter == null) ? includeCommons : newCommonFilter)           ? 'FREE'        : ''),
-          (((newCommonFilter == null) ? includeCommons : newCommonFilter)           ? 'COMMON'      : ''),
-          (((newRareFilter == null) ? includeRares : newRareFilter)                 ? 'RARE'        : ''),
-          (((newEpicFilter == null) ? includeEpics : newEpicFilter)                 ? 'EPIC'        : ''),
-          (((newLegendaryFilter == null) ? includeLegendaries : newLegendaryFilter) ? 'LEGENDARY'   : '')
-        ]
-        .includes(x.rarity)
-      )
-      && (x.collectible == true || tokenIDs.includes(((newNonCollectibleFilter == null) ? includeNonCollectible : newNonCollectibleFilter) ? x.id : 'N/A'))
-      && (x.set === cardSet || cardSet === null)
-      && ((searchCriteria != "" && searchCriteria != null) ? (x.name.toUpperCase()).includes(searchCriteria.toUpperCase()) : 1 == 1)
-    )
+    newTypeFilter, newNonCollectibleFilter,newRarityFilter,
+    newBGTokensFilter, newBGTierFilter, newBGTribeFilter, newHeroSpecificFilter, newRetiredFilter) {
+    var filteredData
 
-    if(applyLoadLimit && !increaseLoadLimit) {
-      filteredData = filteredData.slice(0, loadLimit)
-      setMyCardData(filteredData)
-    } else if (increaseLoadLimit) {
-      filteredData = filteredData.slice(loadLimit,loadLimit+100)
-      setMyCardData(myCardData.concat(filteredData))
-    } else {
-      setMyCardData(filteredData)
+    if (typeFilter == 'MINION') {
+
+      var rarityMap = (newRarityFilter == null ? includeRarities : newRarityFilter).map(x => x[1] ? x[0] : '')
+      rarityMap = (rarityMap[0].concat(rarityMap.slice(1))) // Concat the first element (undefined, 'FREE', 'COMMON') with the rest for easier mapping.
+      const typeMap = (newTypeFilter == null ? includeTypes : newTypeFilter).map(x => x[1] ? x[0] : '')
+
+      filteredData = myData.filter(x =>
+        typeMap.includes(x.type)
+        && rarityMap.includes(x.rarity)
+        && (x.collectible == true || tokenIDs.includes(((newNonCollectibleFilter == null) ? includeNonCollectible : newNonCollectibleFilter) ? x.id : 'N/A'))
+        && (x.set === cardSet || cardSet === null)
+        && ((searchCriteria != "" && searchCriteria != null) ? (x.name.toUpperCase()).includes(searchCriteria.toUpperCase()) : 1 == 1)
+      )
+
+      if(applyLoadLimit && !increaseLoadLimit) {
+        filteredData = filteredData.slice(0, loadLimit)
+        setMyCardData(filteredData)
+      } else if (increaseLoadLimit) {
+        filteredData = filteredData.slice(loadLimit,loadLimit+100)
+        setMyCardData(myCardData.concat(filteredData))
+      } else {
+        setMyCardData(filteredData)
+      }
+    }
+
+    else if (typeFilter == 'BATTLEGROUNDS') {
+      const tierMap = (newBGTierFilter == null ? includeBGTiers : newBGTierFilter).map(x => x[1] ? x[0] : 0)
+      const tokenFilter = (newBGTokensFilter == null ? includeBGTokens : newBGTokensFilter)
+      const heroSpecificFilter = (newHeroSpecificFilter == null ? includeBGHeroSpecific : newHeroSpecificFilter)
+      const retiredFilter = (newRetiredFilter == null ? includeBGRetired : newRetiredFilter)
+      const tribeMap = (newBGTribeFilter == null ? includeBGTribes : newBGTribeFilter).map(x => x[1] ? x[0] : 0)
+
+      setMyCardData(myData.filter(x =>
+          (!battlegroundToken(x.id) || battlegroundToken(x.id) == tokenFilter) &&
+          (battlegroundTechLevel(x) == undefined || tierMap.includes(battlegroundTechLevel(x))) &&
+          (!battlegroundHeroSpecific(x.id) || battlegroundHeroSpecific(x.id) == heroSpecificFilter) &&
+          (!battlegroundRetired(x.id) || battlegroundRetired(x.id) == retiredFilter) &&
+          tribeMap.includes(battlegroundTribe(x.id))
+        )
+      )
+    }
+
+    else {
+      setMyCardData(myData)
     }
   }
 
@@ -113,8 +126,8 @@ const CardListTab = ( { route, navigation, state }) => {
         {cardSet: null}
       )
       filterCards(null, true, false)
-    } else if (typeFilter == 'HERO'){
-      setMyCardData(myData)
+    } else if (typeFilter == 'HERO') {
+      filterCards()
       navigation.navigate(
         'Heroes',
         {cardSet: null}
@@ -132,8 +145,8 @@ const CardListTab = ( { route, navigation, state }) => {
     else if (typeFilter == 'MINION' && cardSet == null) {
       filterCards(null, true, false)
     }
-    else if (typeFilter == "HERO") {
-      setMyCardData(myData)
+    else if (typeFilter == 'HERO' || typeFilter == 'BATTLEGROUNDS') {
+      filterCards()
     }
   })
 
@@ -147,119 +160,180 @@ const CardListTab = ( { route, navigation, state }) => {
   }
 
   const CardListFooter = () => {
-    return (
-      <>
-      { (myCardData.length < myData.filter(x =>
-        (
-          x.type == (includeMinions ? 'MINION' : '') ||
-          x.type == (includeHeroes ? 'HERO' : '') ||
-          x.type == (includeSpells ? 'SPELL' : '') ||
-          x.type == (includeWeapons ? 'WEAPON' : '')
-        )
-        &&
-        (
-          [
-            (includeCommons           ? 'FREE'        : ''),
-            (includeCommons           ? 'COMMON'      : ''),
-            (includeRares                 ? 'RARE'        : ''),
-            (includeEpics                 ? 'EPIC'        : ''),
-            (includeLegendaries ? 'LEGENDARY'   : '')
-          ]
-          .includes(x.rarity)
-        )
-        && (x.set === cardSet || cardSet === null)
-        && (x.collectible == true || tokenIDs.includes(includeNonCollectible ? x.id : 'N/A'))).length && showFooter) ?
-        <TouchableOpacity style={styles.button} onPress= {() => {
-          filterCards(null, false, true)
-          setLoadLimit(loadLimit+100)
-        }}>
-          <Text style={styles.text}>Load More</Text>
-        </TouchableOpacity>
-        : <></>
-      }
-      </>
-    )
+
+    if (typeFilter != 'MINION') {
+      return (<></>)
+    } else {
+      var rarityMap = includeRarities.map(x => x[1] ? x[0] : '')
+      rarityMap = (rarityMap[0].concat(rarityMap.slice(1))) // Concat the first element (undefined, 'FREE', 'COMMON') with the rest for easier mapping.
+      const typeMap = includeTypes.map(x => x[1] ? x[0] : '')
+
+      return (
+        <>
+        { (myCardData.length < myData.filter(x =>
+          typeMap.includes(x.type)
+          && rarityMap.includes(x.rarity)
+          && (x.set === cardSet || cardSet === null)
+          && (x.collectible == true || tokenIDs.includes(includeNonCollectible ? x.id : 'N/A'))).length && showFooter) ?
+          <TouchableOpacity style={styles.button} onPress= {() => {
+            filterCards(null, false, true)
+            setLoadLimit(loadLimit+100)
+          }}>
+            <Text style={styles.text}>Load More</Text>
+          </TouchableOpacity>
+          : <></>
+        }
+        </>
+      )
+    }
   }
 
   const FilterMenu = () => {
+    if (typeFilter == 'MINION') {
+      return (<MinionFilters/>)
+    } else if (typeFilter == 'BATTLEGROUNDS') {
+      return (<BattlegroundFilters/>)
+    } else
+      return (<></>)
+  }
+
+  const MinionFilters = () => {
     return (
-      <View style={{position: 'absolute', right:48, top:56, zIndex: 1, backgroundColor: 'white', visibility:filterMenuVisibility,
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 5}} >
-        <View style={{padding: 16}}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{paddingRight: 16}}>Minions</Text>
-            <Switch onValueChange={ (newMinionFilter) => {
-                setIncludeMinions(newMinionFilter)
-                filterCards(null, true, false, newMinionFilter, null, null, null, null)
-              }} value={includeMinions} />
-          </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 16}}>
-            <Text style={{paddingRight: 16}}>Heroes</Text>
-            <Switch onValueChange={ (newHeroFilter) => {
-              setIncludeHeroes(newHeroFilter)
-              filterCards(null, true, false, null, newHeroFilter, null, null, null)
-            }} value={includeHeroes} />
-          </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 16}}>
-            <Text style={{paddingRight: 16}}>Spells</Text>
-            <Switch onValueChange={(newSpellFilter) => {
-              setIncludeSpells(newSpellFilter)
-              filterCards(null, true, false, null, null, newSpellFilter, null, null)
-            }} value={includeSpells} />
-          </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 16}}>
-            <Text style={{paddingRight: 16}}>Weapons</Text>
-            <Switch onValueChange={(newWeaponFilter) => {
-              setIncludeWeapons(newWeaponFilter)
-              filterCards(null, true, false, null, null, null, newWeaponFilter, null)
-            }} value={includeWeapons} />
-          </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 16}}>
+      <View style={styles.filterMenu}>
+        <View style={{paddingBottom: 16, paddingHorizontal: 16}}>
+          <TypeFilter name='Minion'  index={0} />
+          <TypeFilter name='Heroes'  index={1} />
+          <TypeFilter name='Spells'  index={2} />
+          <TypeFilter name='Weapons' index={3} />
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 16, paddingBottom: 16}}>
             <Text style={{paddingRight: 16}}>Non-Collectible</Text>
             <Switch onValueChange={(newNonCollectibleFilter) => {
               setIncludeNonCollectible(newNonCollectibleFilter)
-              filterCards(null, true, false, null, null, null, null, newNonCollectibleFilter)
+              filterCards(null, true, false, null, newNonCollectibleFilter)
             }} value={includeNonCollectible} />
           </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 16}}>
-            <TouchableOpacity onPress={ () => {
-              filterCards(null, true, false, null, null, null, null, null, !includeCommons, null, null, null)
-              setIncludeCommons(previous => !previous)
-            }}>
-              <Image style={{width: 34, height: 44}} source={require('./assets/img/common_gem_small.png')}/>
-              <Image style={{width: 34, height: 44, marginTop: -44, visibility: ((includeCommons || filterMenuVisibility == 'hidden') ? 'hidden' : 'visible')}} source={require('./assets/img/exclude.png')}/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={ () => {
-              filterCards(null, true, false, null, null, null, null, null, null, !includeRares, null, null)
-              setIncludeRares(previous => !previous)
-            }}>
-              <Image style={{width: 34, height: 44}} source={require('./assets/img/rare_gem_small.png')}/>
-              <Image style={{width: 34, height: 44, marginTop: -44, visibility: ((includeRares || filterMenuVisibility == 'hidden') ? 'hidden' : 'visible')}} source={require('./assets/img/exclude.png')}/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={ () => {
-              filterCards(null, true, false, null, null, null, null, null, null, null, !includeEpics, null)
-              setIncludeEpics(previous => !previous)
-            }}>
-              <Image style={{width: 34, height: 44}} source={require('./assets/img/epic_gem_small.png')}/>
-              <Image style={{width: 34, height: 44, marginTop: -44, visibility: ((includeEpics || filterMenuVisibility == 'hidden') ? 'hidden' : 'visible')}} source={require('./assets/img/exclude.png')}/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={ () => {
-              filterCards(null, true, false, null, null, null, null, null, null, null, null, !includeLegendaries)
-              setIncludeLegendaries(previous => !previous)
-            }}>
-              <Image style={{width: 34, height: 44}} source={require('./assets/img/legendary_gem_small.png')}/>
-              <Image style={{width: 34, height: 44, marginTop: -44, visibility: ((includeLegendaries || filterMenuVisibility == 'hidden') ? 'hidden' : 'visible')}} source={require('./assets/img/exclude.png')}/>
-            </TouchableOpacity>
+          <SoundDivider />
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 8}}>
+            <RarityFilter name='common'     index={0} />
+            <RarityFilter name='rare'       index={1} />
+            <RarityFilter name='epic'       index={2} />
+            <RarityFilter name='legendary'  index={3} />
           </View>
         </View>
       </View>
+    )
+  }
+
+  const TypeFilter = (props) => {
+    var index = props.index
+    return (
+      <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 16}}>
+        <Text style={{paddingRight: 16}}>{props.name}</Text>
+        <Switch onValueChange={ () => {
+            var newTypeFilter = includeTypes.slice(0,index).concat([[includeTypes[index][0],!includeTypes[index][1]]], includeTypes.slice(index+1))
+            setIncludeTypes(newTypeFilter)
+            filterCards(null, true, false, newTypeFilter)
+          }} value={includeTypes[index][1]} />
+      </View>
+    )
+  }
+
+  const RarityFilter = (props) => {
+    var index = props.index
+    return (
+      <TouchableOpacity onPress={ () => {
+        var newRarityFilter = includeRarities.slice(0,index).concat([[includeRarities[index][0],!includeRarities[index][1]]], includeRarities.slice(index+1))
+        setIncludeRarities(newRarityFilter)
+        filterCards(null, true, false, null, null, newRarityFilter)
+      }}>
+        <Image style={{width: 34, height: 44}} source={require('./assets/img/'+props.name+'_gem_small.png')}/>
+        <Image style={{width: 34, height: 44, marginTop: -44, visibility: ((includeRarities[index][1] || filterMenuVisibility == 'hidden') ? 'hidden' : 'visible')}} source={require('./assets/img/exclude.png')}/>
+      </TouchableOpacity>
+    )
+  }
+
+  const BattlegroundFilters = () => {
+    return (
+      <View style={styles.filterMenu} >
+        <View style={{padding: 16}}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{paddingRight: 16}}>Tokens</Text>
+            <Switch onValueChange={(newBGTokensFilter) => {
+              setIncludeBGTokens(newBGTokensFilter)
+              filterCards(null, true, false, null, null, null, newBGTokensFilter)
+            }} value={includeBGTokens} />
+          </View>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 16}}>
+            <Text style={{paddingRight: 16}}>Hero-Specific</Text>
+            <Switch onValueChange={(newBGHeroSpecificFilter) => {
+              setIncludeBGHeroSpecific(newBGHeroSpecificFilter)
+              filterCards(null, true, false, null, null, null, null, null, null, newBGHeroSpecificFilter)
+            }} value={includeBGHeroSpecific} />
+          </View>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 16, paddingBottom: 16}}>
+            <Text style={{paddingRight: 16}}>Retired</Text>
+            <Switch onValueChange={(newRetiredFilter) => {
+              setIncludeBGRetired(newRetiredFilter)
+              filterCards(null, true, false, null, null, null, null, null, null, null, newRetiredFilter)
+            }} value={includeBGRetired} />
+          </View>
+          <SoundDivider />
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 8}}>
+            <TierFilter tier={1}/>
+            <TierFilter tier={2}/>
+            <TierFilter tier={3}/>
+          </View>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 8, paddingBottom: 16}}>
+            <TierFilter tier={4}/>
+            <TierFilter tier={5}/>
+            <TierFilter tier={6}/>
+          </View>
+          <SoundDivider />
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 8}}>
+            <TribeFilter index={0} name={'beasts'}/>
+            <TribeFilter index={1} name={'demons'}/>
+            <TribeFilter index={2} name={'dragons'}/>
+          </View>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: 8}}>
+            <TribeFilter index={3} name={'mechs'}/>
+            <TribeFilter index={4} name={'murlocs'}/>
+            <TribeFilter index={5} name={'pirates'}/>
+          </View>
+          <View style={{flexDirection: 'row', justifyContent: 'center', paddingTop: 8}}>
+            <TribeFilter index={6} name={'neutrals'}/>
+          </View>
+        </View>
+      </View>
+    )
+  }
+
+  const TierFilter = (props) => {
+    var tier = props.tier
+    return (
+      <View style={{paddingHorizontal: 4}}>
+        <TouchableOpacity onPress={() => {
+          var newBGTierFilter = includeBGTiers.slice(0,tier-1).concat([[tier,!includeBGTiers[tier-1][1]]], includeBGTiers.slice(tier))
+          filterCards(null, true, false, null, null, null, null, newBGTierFilter, null)
+          setIncludeBGTiers(newBGTierFilter)
+        }}>
+          <Image style={{width: 42, height: 44}} source={require('./assets/img/techlevel'+tier+'.png')}/>
+          <Image style={{width: 34, height: 44, marginTop: -44, marginLeft: 4, visibility: ((includeBGTiers[tier-1][1] || filterMenuVisibility == 'hidden') ? 'hidden' : 'visible')}} source={require('./assets/img/exclude.png')}/>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
+  const TribeFilter = (props) => {
+    var index = props.index
+    return (
+      <TouchableOpacity onPress={() => {
+        var newBGTribeFilter = includeBGTribes.slice(0,index).concat([[includeBGTribes[index][0],!includeBGTribes[index][1]]], includeBGTribes.slice(index+1))
+        filterCards(null, true, false, null, null, null, null, null, newBGTribeFilter)
+        setIncludeBGTribes(newBGTribeFilter)
+      }}>
+        <Image style={{width: 34, height: 34}} source={require('./assets/img/bg_'+props.name+'.png')}/>
+        <Image style={{width: 26.15, height: 34, marginTop: -32, marginLeft: 4, visibility: ((includeBGTribes[index][1] || filterMenuVisibility == 'hidden') ? 'hidden' : 'visible')}} source={require('./assets/img/exclude.png')}/>
+      </TouchableOpacity>
     )
   }
 
@@ -275,9 +349,19 @@ const CardListTab = ( { route, navigation, state }) => {
       shadowRadius: 3.84,
       elevation: 5
     },
-
     text: {
       alignItems: "center", justifyContent: 'center', color: "white", fontSize: 14,
+    },
+    filterMenu:
+      {position: 'absolute', right:48, top:56, zIndex: 1, backgroundColor: 'white', visibility:filterMenuVisibility,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5
     }
   })
 
@@ -305,7 +389,7 @@ const CardListTab = ( { route, navigation, state }) => {
               }}>
                 <MaterialCommunityIcons name="information-outline" size={30} color="white" />
               </TouchableOpacity>
-              {typeFilter == 'MINION' ?
+              {typeFilter == 'MINION' || typeFilter == 'BATTLEGROUNDS' ?
                 <TouchableOpacity style={{paddingTop: 8}} onPress={() => {
                     filterMenuVisibility == 'hidden' ? setFilterMenuVisibility('visible') : setFilterMenuVisibility('hidden')
                   }}>
@@ -336,9 +420,16 @@ const CardListTab = ( { route, navigation, state }) => {
                   <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'
                   , justifyContent: 'space-between'
                   , marginTop: 4, marginBottom: 4, marginRight: 8}}>
-                    <SmallClassImage cardClass={item.cardClass} multiClassGroup={item.multiClassGroup}/>
+                    { typeFilter == 'BATTLEGROUNDS' ?
+                        <>
+                          <TribeImage tribe={battlegroundTribe(item.id)}/>
+                          <TechLevelImage techlevel={battlegroundTechLevel(item)}/>
+                        </>
+                        : <SmallClassImage cardClass={item.cardClass} multiClassGroup={item.multiClassGroup}/>
+                    }
+
                     <Text style={{flexGrow: 1}} >{item.name}</Text>
-                    {item.type == 'MINION' && !['SCH_239','SCH_271t','SCH_357t','SCH_605','SCH_612t','SCH_616','SCH_711','SCH_714'].includes(item.id) ?
+                    {item.type == 'MINION' && !['BGS_046t'].includes(item.id) ?
                       <>
                       {['KAR_114','DAL_058','LOOT_013','AT_114','DAL_085'].includes(item.id) ? <></> :
                         <>
@@ -367,8 +458,10 @@ const CardListTab = ( { route, navigation, state }) => {
             />
             <View style={{justifyContent:'center', display:cardDisplayed}}>
                <Card card={card}
+                  battlegrounds={(typeFilter == 'BATTLEGROUNDS') ? true : false}
                   openNewCard={(newCardID) => {
                     var newCard = data.find(x => x.id == newCardID)
+                    console.log(newCard.rarity)
                     cards.push(newCard)
                     setCard(newCard)
                   }}
@@ -380,6 +473,5 @@ const CardListTab = ( { route, navigation, state }) => {
           </>
         )
       }
-
 
 export default CardListTab;

@@ -1,10 +1,68 @@
 import tokens from './assets/tokens.json';
 import heroes from './assets/heroes.json';
+import battlegrounds from './assets/battlegrounds.json';
+
 
 const tokenIDs = tokens.map(a => a.tokenID)
 const heroIDs = heroes.map(a => a.id)
+const battlegroundsIDs = battlegrounds.map(a => a.cardID)
 
-const sortCards = (cards) => {
+const battlegroundCard = (cardID) => {
+
+  try {
+    const card = battlegrounds.find(x => x.cardID == cardID)
+    card.heroSpecific = (card.heroSpecific == 1) // Set this to true or false.
+    return card
+  } catch (err) {
+    return ''
+  }
+}
+
+const battlegroundTribe = (cardID) => {
+  return battlegrounds.find(x => x.cardID == cardID).tribe
+}
+
+const battlegroundToken = (cardID) => {
+  try {
+    return battlegrounds.find(x => x.cardID == cardID).token == 1
+  } catch (err) {
+    return false
+  }
+}
+
+const battlegroundTechLevel = (card) => {
+  if (card.id == 'GVG_058')
+    return 2
+  else
+    return card.techLevel
+}
+
+const battlegroundHeroSpecific = (cardID) => {
+  try {
+    return battlegrounds.find(x => x.cardID == cardID).heroSpecific == 1
+  } catch (err) {
+    return false
+  }
+}
+
+const battlegroundFlavor = (cardID) => {
+  try {
+    return battlegrounds.find(x => x.cardID == cardID).flavor
+  } catch (err) {
+    return ''
+  }
+}
+
+const battlegroundRetired = (cardID) => {
+  try {
+    return battlegrounds.find(x => x.cardID == cardID).retired
+  } catch (err) {
+    return false
+  }
+}
+
+
+const sortCards = (cards, type) => {
   function classOrder(a) {
 
     // Dual Class Cards
@@ -36,20 +94,56 @@ const sortCards = (cards) => {
     }
   }
 
-  return cards.sort(
-    function(a,b) {
-      var classA = classOrder(a)
-      var classB = classOrder(b)
-
-      if(classA < classB )  { return -1}
-      if(classA > classB )  { return 1}
-      if(classA == classB ) {
-        if(a.name < b.name )    {return -1}
-        if(a.name  > b.name )   {return 1}
-        if(a.name  == b.name )  {return 0}
-      }
+  function tribeOrder(a) {
+    switch(battlegroundTribe(a.id)) {
+      case 'Beast': return 1
+      case 'Demon': return 2
+      case 'Dragon': return 3
+      case 'Mech': return 4
+      case 'Murloc': return 5
+      case 'Pirate': return 6
+      case 'Neutral': return 7
+      default: return 99
     }
-  )
+  }
+
+  if(type == 'MINION' || type == 'HERO') {
+    return cards.sort(
+      function(a,b) {
+        var classA = classOrder(a)
+        var classB = classOrder(b)
+
+        if(classA < classB )  { return -1}
+        if(classA > classB )  { return 1}
+        if(classA == classB ) {
+          if(a.name < b.name )    {return -1}
+          if(a.name  > b.name )   {return 1}
+          if(a.name  == b.name )  {return 0}
+        }
+      }
+    )
+  } else if (type == 'BATTLEGROUNDS')
+    return cards.sort (
+      function(a,b) {
+          var tribeA = tribeOrder(a)
+          var tribeB = tribeOrder(b)
+          var techLevelA = battlegroundTechLevel(a)
+          var techLevelB = battlegroundTechLevel(b)
+
+          if(techLevelA == undefined) {return -1}
+          if(techLevelA < techLevelB) {return -1}
+          if(techLevelA > techLevelB) {return 1}
+          if(techLevelA== techLevelB) {
+            if(tribeA < tribeB )  { return -1}
+            if(tribeA > tribeB )  { return 1}
+            if(tribeA == tribeB ) {
+              if(a.name < b.name )   {return -1}
+              if(a.name > b.name )   {return 1}
+              if(a.name == b.name )  {return 0}
+            }
+          }
+        }
+    )
 }
 
-export {sortCards, tokenIDs, heroIDs}
+export {sortCards, tokenIDs, heroIDs, battlegroundsIDs, battlegroundTribe, battlegroundToken, battlegroundHeroSpecific, battlegroundFlavor, battlegroundRetired, battlegroundTechLevel, battlegroundCard}
