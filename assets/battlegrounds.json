@@ -642,5 +642,10 @@
             "cardID": "BGS_046t",
             "tribe": "Pirate",
             "retired": "1"
+        },
+        {
+          "cardID": "BGS_082",
+          "tribe": "Neutral"
         }
+
     ]
