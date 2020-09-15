@@ -8,16 +8,19 @@ import SoundDivider from './SoundDivider'
 import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import {sortCards, tokenIDs, heroIDs, battlegroundFlavor, battlegroundRetired, battlegroundCard} from './HelperFunctions'
+import heroes from './assets/heroes.json';
 
 const Card = (props) => {
 
   const scrollViewRef = React.useRef()
 
-  const imgSrc = getImage(props.card.id)
+
   const isHero = heroIDs.includes(props.card.id)
+  const imgSrc = getImage(props.card.id)
 
   function getImage(cardID) {
-    if (isHero || cardID == 'EX1_323h') {
+
+    if (heroIDs.includes(props.card.id) || cardID == 'EX1_323h') {
       return 'https://hearthstonesounds.s3.amazonaws.com/' + cardID + '.png'
     } else if (props.battlegrounds) {
       return 'https://hearthstonesounds.s3.amazonaws.com/' + cardID + '_BG.png'
