@@ -34,12 +34,18 @@
         },
         {
             "cardID": "BOT_445",
-            "tribe": "Mech"
+            "tribe": "Mech",
+            "retired": "1"
         },
         {
             "cardID": "BOT_445t",
             "tribe": "Mech",
-            "token": "1"
+            "token": "1",
+            "retired": "1"
+        },
+        {
+            "cardID": "ULD_217",
+            "tribe": "Mech"
         },
         {
             "cardID": "BGS_027",

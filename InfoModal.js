@@ -56,7 +56,7 @@ const InfoModal = (props) => {
         </View>
       </View>
       <SoundDivider/>
-      <Text style={{paddingBottom: 8}}>{'Version 1.0.4\nHearthstone Patch 18.0.2.56359'}</Text>
+      <Text style={{paddingBottom: 8}}>{'Version 1.0.5\nHearthstone Patch 18.2.0.58638'}</Text>
       <SoundDivider/>
       <Text style={{paddingBottom: 8, fontSize: 10}}>{'HearthSFX is not affiliated with or endorsed by Blizzard Entertainment. Images, sounds, and descriptions are trademarked and subject to copyright below.'}</Text>
       <Text style={{paddingBottom: 8, fontSize: 10}}>{'Hearthstone®: Heroes of Warcraft™\n©2014 Blizzard Entertainment, Inc. All rights reserved. Heroes of Warcraft is a trademark, and Hearthstone is a registered trademark of Blizzard Entertainment, Inc. in the U.S. and/or other countries.'}</Text>
