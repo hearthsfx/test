@@ -1,19 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "04e5ed68822f4a7b9f18",
-    "url": "/test/static/js/app.385d75b8.chunk.js"
+    "revision": "2e098fa913a2bd8416ff",
+    "url": "/test/static/js/app.c84619f6.chunk.js"
   },
   {
     "revision": "a1e2cb67a610854e158e",
     "url": "/test/static/js/runtime~app.39ceea80.js"
   },
   {
-    "revision": "afb63be4993f3095e0c0",
-    "url": "/test/static/js/2.4256c6b5.chunk.js"
-  },
-  {
-    "revision": "75cd4693edc1d35ea56b9a65d7926a18",
-    "url": "/test/static/media/exclude.46c8feb2.png"
+    "revision": "49066f1f843269e20407",
+    "url": "/test/static/js/2.712c79d8.chunk.js"
   },
   {
     "revision": "cac0696d39f945c2424a76bef01dcb64",
@@ -60,8 +56,68 @@ self.__precacheManifest = [
     "url": "/test/static/media/class_small_neutral.d25d7174.png"
   },
   {
+    "revision": "75cd4693edc1d35ea56b9a65d7926a18",
+    "url": "/test/static/media/exclude.46c8feb2.png"
+  },
+  {
     "revision": "be775a6ef238702405d0fed963e43044",
     "url": "/test/static/media/Set1_Icon.ac32ff2e.png"
+  },
+  {
+    "revision": "7e1532abf914f85af109e48d6d9c90e8",
+    "url": "/test/static/media/techlevel1.4166ac56.png"
+  },
+  {
+    "revision": "8812ad9f4fa294c29860a4ab6589f979",
+    "url": "/test/static/media/techlevel2.70945d7d.png"
+  },
+  {
+    "revision": "0a5a4a8f70f7bedfbaf0b68e20934cd0",
+    "url": "/test/static/media/techlevel3.aee75764.png"
+  },
+  {
+    "revision": "1ebcc8998f3cdc393a31937f07385bda",
+    "url": "/test/static/media/techlevel4.ad86b855.png"
+  },
+  {
+    "revision": "f723a9f57d44c62ea8126452b9ab6dfc",
+    "url": "/test/static/media/techlevel5.deed6cbf.png"
+  },
+  {
+    "revision": "c7240a12c3af209a727fdd3316c8ff4f",
+    "url": "/test/static/media/techlevel6.7c39b1aa.png"
+  },
+  {
+    "revision": "ba9cd7334f6e0f9785b86c7a6a840455",
+    "url": "/test/static/media/techlevel0.fa35e5fc.png"
+  },
+  {
+    "revision": "2001f24a1a745c60df187c1597dcaa50",
+    "url": "/test/static/media/bg_beasts.66b989b5.png"
+  },
+  {
+    "revision": "b0346a4611d465c8452cf315dfe73d64",
+    "url": "/test/static/media/bg_demons.3aa3db7d.png"
+  },
+  {
+    "revision": "f8b7092b69cddd8b545aa9b1502b1519",
+    "url": "/test/static/media/bg_mechs.85d062d4.png"
+  },
+  {
+    "revision": "f6241db2fcc60786ff4e93b439b87855",
+    "url": "/test/static/media/bg_pirates.6b6aba23.png"
+  },
+  {
+    "revision": "e84df2b0ccdd6745c850988d92814b09",
+    "url": "/test/static/media/bg_murlocs.f76f8094.png"
+  },
+  {
+    "revision": "94c9f296212387c0a330118c67093820",
+    "url": "/test/static/media/bg_dragons.e170ee50.png"
+  },
+  {
+    "revision": "9975c011d1a5857cb71fb1ecec98d4f7",
+    "url": "/test/static/media/bg_neutrals.586b344a.png"
   },
   {
     "revision": "b2e0fc821c6886fb3940f85a3320003e",
@@ -160,16 +216,16 @@ self.__precacheManifest = [
     "url": "/test/static/media/common_gem_small.c3cb9701.png"
   },
   {
-    "revision": "c6c5e26fb0e4601e6ea27d19bc176e56",
-    "url": "/test/static/media/rare_gem_small.f2054728.png"
-  },
-  {
     "revision": "b07f901f15229a0650405f6d96fc7c0d",
     "url": "/test/static/media/epic_gem_small.2056dd5b.png"
   },
   {
     "revision": "eaaea84078817b865a400a68a29c7c87",
     "url": "/test/static/media/legendary_gem_small.60d2f3cd.png"
+  },
+  {
+    "revision": "c6c5e26fb0e4601e6ea27d19bc176e56",
+    "url": "/test/static/media/rare_gem_small.f2054728.png"
   },
   {
     "revision": "1d69b9589be26c85d295fd8d3a98da58",
@@ -276,24 +332,24 @@ self.__precacheManifest = [
     "url": "/test/./fonts/Fontisto.ttf"
   },
   {
-    "revision": "f328c398676e066fb4e76f0c028592b4",
-    "url": "/test/expo-service-worker.js"
-  },
-  {
-    "revision": "5af2d7ffc69d35ec8c575a16f306e5b7",
+    "revision": "1f01adf506bbc5fa797b610bdd40b78e",
     "url": "/test/index.html"
-  },
-  {
-    "revision": "e6bfb1796dcb9e67c7d90c123c1ae2f7",
-    "url": "/test/register-service-worker.js"
   },
   {
     "revision": "ec543248d7b23864564429fc03837190",
     "url": "/test/serve.json"
   },
   {
+    "revision": "2002987acac9deb6803ab4ba381226ba",
+    "url": "/test/expo-service-worker.js"
+  },
+  {
+    "revision": "e6bfb1796dcb9e67c7d90c123c1ae2f7",
+    "url": "/test/register-service-worker.js"
+  },
+  {
     "revision": "3c944d27a8e8bea454129d0bca04be04",
-    "url": "/test/static/js/2.4256c6b5.chunk.js.LICENSE.txt"
+    "url": "/test/static/js/2.712c79d8.chunk.js.LICENSE.txt"
   },
   {
     "revision": "e932a83d1b38bc43a980931beecedcea",
