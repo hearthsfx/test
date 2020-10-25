@@ -14,7 +14,7 @@ import { Toolbar } from 'react-native-material-ui';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ToolbarTitle from './ToolbarTitle'
 import * as Analytics from 'expo-firebase-analytics';
-import {sortCards, tokenIDs, heroIDs, battlegroundsIDs, battlegroundTribe, battlegroundToken, battlegroundHeroSpecific, battlegroundFlavor, battlegroundRetired, battlegroundTechLevel} from './HelperFunctions'
+import {generalCards, heroCards, bgCards, tokenIDs, heroIDs, battlegroundsIDs, battlegroundTribe, battlegroundToken, battlegroundHeroSpecific, battlegroundFlavor, battlegroundRetired, battlegroundTechLevel} from './HelperFunctions'
 
 const CardListTab = ( { route, navigation, state }) => {
 
@@ -28,7 +28,7 @@ const CardListTab = ( { route, navigation, state }) => {
   const [includeBGTiers, setIncludeBGTiers] = useState([[1, true], [2, true], [3, true], [4, true], [5, true], [6, true]]) // Array represents Tier 1, 2, ...
   const [includeBGTribes, setIncludeBGTribes] = useState([['Beast',true],['Demon',true],['Dragon',true],['Mech',true],['Murloc',true],['Pirate',true],['Neutral',true]])
   const [cardDisplayed, setCardDisplayed] = useState('none')
-  const [card, setCard] = useState(data[0])
+  const [card, setCard] = useState([])
   const [myCardData, setMyCardData] = useState([])
   const [cards, setCards] = useState([])
   const [loadLimit, setLoadLimit] = useState(100)
@@ -41,36 +41,31 @@ const CardListTab = ( { route, navigation, state }) => {
   useScrollToTop(flatListRef)
 
   var {cardSet} = route.params
-  const {typeFilter} = route.params
+  const typeFilter = route.name
+  var {cardID} = route.params
 
-  var myData = filterData()
-
-  function filterData() {
-    if (typeFilter == 'MINION') {
-      return sortCards(data.filter(x => (!heroIDs.includes(x.id))), 'MINION')
-    } else if (typeFilter == 'HERO') {
-      return sortCards(data.filter(x => heroIDs.includes(x.id)), 'HERO')
-    } else if (typeFilter == 'BATTLEGROUNDS') {
-      return sortCards(data.filter(x => (battlegroundsIDs.includes(x.id))), 'BATTLEGROUNDS')
-    }
-  }
+  useEffect(() => {
+    if(cardID != '' && cardID != undefined)
+      setCardDisplayed('')
+    else
+      setCardDisplayed('none')
+  })
 
   function filterCards(searchCriteria, applyLoadLimit, increaseLoadLimit,
     newTypeFilter, newNonCollectibleFilter,newRarityFilter,
     newBGTokensFilter, newBGTierFilter, newBGTribeFilter, newHeroSpecificFilter, newRetiredFilter) {
     var filteredData
-
-    if (typeFilter == 'MINION') {
+    if (typeFilter == 'Cards') {
 
       var rarityMap = (newRarityFilter == null ? includeRarities : newRarityFilter).map(x => x[1] ? x[0] : '')
       rarityMap = (rarityMap[0].concat(rarityMap.slice(1))) // Concat the first element (undefined, 'FREE', 'COMMON') with the rest for easier mapping.
       const typeMap = (newTypeFilter == null ? includeTypes : newTypeFilter).map(x => x[1] ? x[0] : '')
 
-      filteredData = myData.filter(x =>
+      filteredData = generalCards.filter(x =>
         typeMap.includes(x.type)
         && rarityMap.includes(x.rarity)
         && (x.collectible == true || tokenIDs.includes(((newNonCollectibleFilter == null) ? includeNonCollectible : newNonCollectibleFilter) ? x.id : 'N/A'))
-        && (x.set === cardSet || cardSet === null)
+        && (x.set == cardSet || cardSet == 'all')
         && ((searchCriteria != "" && searchCriteria != null) ? (x.name.toUpperCase()).includes(searchCriteria.toUpperCase()) : 1 == 1)
       )
 
@@ -85,25 +80,28 @@ const CardListTab = ( { route, navigation, state }) => {
       }
     }
 
-    else if (typeFilter == 'BATTLEGROUNDS') {
+    else if (typeFilter == 'Battlegrounds') {
       const tierMap = (newBGTierFilter == null ? includeBGTiers : newBGTierFilter).map(x => x[1] ? x[0] : 0)
       const tokenFilter = (newBGTokensFilter == null ? includeBGTokens : newBGTokensFilter)
       const heroSpecificFilter = (newHeroSpecificFilter == null ? includeBGHeroSpecific : newHeroSpecificFilter)
       const retiredFilter = (newRetiredFilter == null ? includeBGRetired : newRetiredFilter)
       const tribeMap = (newBGTribeFilter == null ? includeBGTribes : newBGTribeFilter).map(x => x[1] ? x[0] : 0)
 
-      setMyCardData(myData.filter(x =>
+      setMyCardData(bgCards.filter(x =>
           (!battlegroundToken(x.id) || battlegroundToken(x.id) == tokenFilter) &&
           (battlegroundTechLevel(x) == undefined || tierMap.includes(battlegroundTechLevel(x))) &&
           (!battlegroundHeroSpecific(x.id) || battlegroundHeroSpecific(x.id) == heroSpecificFilter) &&
           (!battlegroundRetired(x.id) || battlegroundRetired(x.id) == retiredFilter) &&
-          tribeMap.includes(battlegroundTribe(x.id))
+          tribeMap.includes(battlegroundTribe(x.id)) &&
+          ((searchCriteria != "" && searchCriteria != null) ? (x.name.toUpperCase()).includes(searchCriteria.toUpperCase()) : 1 == 1)
         )
       )
     }
 
-    else {
-      setMyCardData(myData)
+    else if (typeFilter == 'Heroes') {
+      setMyCardData(heroCards.filter(x =>
+        ((searchCriteria != "" && searchCriteria != null) ? (x.name.toUpperCase()).includes(searchCriteria.toUpperCase()) : 1 == 1)
+      ))
     }
   }
 
@@ -119,49 +117,89 @@ const CardListTab = ( { route, navigation, state }) => {
   }
 
   navigation.addListener('tabPress', e => {
-    if (typeFilter == 'MINION') {
-      cardSet = null
+    console.log('tabPress activated')
+
+    if (typeFilter == 'Cards') {
+      cardID = null
       navigation.navigate(
         'Cards',
-        {cardSet: null}
+        {cardSet: 'all'}
       )
-      filterCards(null, true, false)
-    } else if (typeFilter == 'HERO') {
+    } else if (typeFilter == 'Heroes') {
       filterCards()
       navigation.navigate(
-        'Heroes',
-        {cardSet: null}
+        'Heroes'
+      )
+      focus()
+    } else if (typeFilter == 'Battlegrounds') {
+      filterCards()
+      navigation.navigate(
+        'Battlegrounds'
       )
     }
+    focus()
   })
 
   navigation.addListener('focus', e => {
-    goToTop()
-    Analytics.setCurrentScreen('CardListTab' + typeFilter)
+    focus()
+  })
 
-    if (typeFilter == 'MINION' && cardSet != null) {
+  function focus() {
+    goToTop()
+    Analytics.setCurrentScreen('CardListTab ' + typeFilter)
+
+    if (typeFilter == 'Cards' && cardSet != 'all') {
       filterCards(null, false, false)
+
     }
-    else if (typeFilter == 'MINION' && cardSet == null) {
+    else if (typeFilter == 'Cards' && cardSet == 'all') {
       filterCards(null, true, false)
     }
-    else if (typeFilter == 'HERO' || typeFilter == 'BATTLEGROUNDS') {
+    else if (typeFilter == 'Heroes' || typeFilter == 'Battlegrounds') {
       filterCards()
     }
-  })
+
+    if (cardID != '') {
+      const cardToShow = data.find(x => x.id == cardID)
+
+      if (cardToShow != undefined) {
+        showCard(cardToShow)
+      }
+
+    }
+    else {
+      navigation.setParams({
+        cardID: ''
+      })
+    }
+  }
 
   function goToTop() {
     flatListRef.current.scrollToOffset({ animated: true, offset: 0 })
   }
 
+  function showCard(card) {
+
+    setCard(card)
+    setCards([card])
+    setFilterMenuVisibility('hidden')
+    setInfoModalVisibility('hidden')
+    navigation.setParams({
+      cardID: card.id
+    })
+  }
+
   const returnToPreviousCard = () => {
     setCard(cards[cards.length-2])
+    navigation.setParams({
+      cardID: cards[cards.length-2].id
+    })
     cards.pop()
   }
 
   const CardListFooter = () => {
 
-    if (typeFilter != 'MINION') {
+    if (typeFilter != 'Cards') {
       return (<></>)
     } else {
       var rarityMap = includeRarities.map(x => x[1] ? x[0] : '')
@@ -189,9 +227,9 @@ const CardListTab = ( { route, navigation, state }) => {
   }
 
   const FilterMenu = () => {
-    if (typeFilter == 'MINION') {
+    if (typeFilter == 'Cards') {
       return (<MinionFilters/>)
-    } else if (typeFilter == 'BATTLEGROUNDS') {
+    } else if (typeFilter == 'Battlegrounds') {
       return (<BattlegroundFilters/>)
     } else
       return (<></>)
@@ -370,6 +408,7 @@ const CardListTab = ( { route, navigation, state }) => {
       <>
       <Toolbar
           centerElement={<ToolbarTitle/>}
+          isSearchActive={false}
           searchable={{
             autoFocus: true,
             placeholder: 'Search',
@@ -389,7 +428,7 @@ const CardListTab = ( { route, navigation, state }) => {
               }}>
                 <MaterialCommunityIcons name="information-outline" size={30} color="white" />
               </TouchableOpacity>
-              {typeFilter == 'MINION' || typeFilter == 'BATTLEGROUNDS' ?
+              {typeFilter == 'Cards' || typeFilter == 'Battlegrounds' ?
                 <TouchableOpacity style={{paddingTop: 8}} onPress={() => {
                     filterMenuVisibility == 'hidden' ? setFilterMenuVisibility('visible') : setFilterMenuVisibility('hidden')
                   }}>
@@ -408,19 +447,13 @@ const CardListTab = ( { route, navigation, state }) => {
               keyExtractor={item => item.id}
               renderItem={({ item }) => (
                 <TouchableOpacity onPress= {() => {
-                              setCard(item)
-                              setCards([item])
-                              if (cardDisplayed == 'none') {
-                                setCardDisplayed('')
-                              }
-                              setFilterMenuVisibility('hidden')
-                              setInfoModalVisibility('hidden')
+                              showCard(item)
                             }}>
 
                   <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'
                   , justifyContent: 'space-between'
                   , marginTop: 4, marginBottom: 4, marginRight: 8}}>
-                    { typeFilter == 'BATTLEGROUNDS' ?
+                    { typeFilter == 'Battlegrounds' ?
                         <>
                           <TribeImage tribe={battlegroundTribe(item.id)}/>
                           <TechLevelImage techlevel={battlegroundTechLevel(item)}/>
@@ -452,20 +485,26 @@ const CardListTab = ( { route, navigation, state }) => {
 
               )}
               ItemSeparatorComponent={FlatListItemSeparator}
-              ListFooterComponent={CardListFooter}
+              //ListFooterComponent={CardListFooter}
               ref={flatListRef}
 
             />
             <View style={{justifyContent:'center', display:cardDisplayed}}>
                <Card card={card}
-                  battlegrounds={(typeFilter == 'BATTLEGROUNDS') ? true : false}
+                  battlegrounds={(typeFilter == 'Battlegrounds') ? true : false}
                   openNewCard={(newCardID) => {
                     var newCard = data.find(x => x.id == newCardID)
-                    console.log(newCard.rarity)
                     cards.push(newCard)
                     setCard(newCard)
+                    navigation.setParams({
+                      cardID: newCardID
+                    })
                   }}
-                  closeCards={() => setCardDisplayed('none')}
+                  closeCards={() => {
+                    navigation.setParams({
+                      cardID: ''
+                    })
+                  }}
                   returnToPreviousCard={returnToPreviousCard}
                   previousCardExists={(cards.length>1) ? true : false}/>
             </View>

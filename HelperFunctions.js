@@ -1,7 +1,7 @@
+import cards from './assets/cards.json';
 import tokens from './assets/tokens.json';
 import heroes from './assets/heroes.json';
 import battlegrounds from './assets/battlegrounds.json';
-
 
 const tokenIDs = tokens.map(a => a.tokenID)
 const heroIDs = heroes.map(a => a.id)
@@ -107,7 +107,7 @@ const sortCards = (cards, type) => {
     }
   }
 
-  if(type == 'MINION' || type == 'HERO') {
+  if(type == 'general' || type == 'heroes') {
     return cards.sort(
       function(a,b) {
         var classA = classOrder(a)
@@ -122,7 +122,7 @@ const sortCards = (cards, type) => {
         }
       }
     )
-  } else if (type == 'BATTLEGROUNDS')
+  } else if (type == 'battlegrounds') {
     return cards.sort (
       function(a,b) {
           var tribeA = tribeOrder(a)
@@ -144,6 +144,15 @@ const sortCards = (cards, type) => {
           }
         }
     )
+  } else {
+    return cards
+  }
 }
 
-export {sortCards, tokenIDs, heroIDs, battlegroundsIDs, battlegroundTribe, battlegroundToken, battlegroundHeroSpecific, battlegroundFlavor, battlegroundRetired, battlegroundTechLevel, battlegroundCard}
+const generalCards = sortCards(cards.filter(x => (!heroIDs.includes(x.id))), 'general')
+const heroCards = sortCards(cards.filter(x => heroIDs.includes(x.id)), 'heroes')
+const bgCards = sortCards(cards.filter(x => (battlegroundsIDs.includes(x.id))), 'battlegrounds')
+
+export {tokenIDs, heroIDs, battlegroundsIDs,
+  battlegroundTribe, battlegroundToken, battlegroundHeroSpecific, battlegroundFlavor, battlegroundRetired, battlegroundTechLevel, battlegroundCard,
+  generalCards, heroCards, bgCards}

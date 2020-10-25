@@ -290,6 +290,121 @@
         "action": "When Played"
     },
     {
+        "parentID": "HERO_07d",
+        "specialID": "HERO_04b",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "HERO_01c",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "HERO_06",
+        "action": "Opening Against Druid"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "HERO_01",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "HERO_02e",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "HERO_09b",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "HERO_02a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "HERO_07a",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "HERO_05c",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "HERO_02c",
+        "action": "Opening"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "EX1_320",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "EX1_308",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "CS2_061",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "CS2_062",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "CS2_056",
+        "action": "When Used"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "CS2_056",
+        "action": "When Used"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "CS2_056",
+        "action": "When Used"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "OG_133",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "DAL_602",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "EX1_303",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "SCH_307t",
+        "action": "When Drawn"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "YOD_025",
+        "action": "When Played"
+    },
+    {
+        "parentID": "HERO_07d",
+        "specialID": "EX1_312",
+        "action": "When Played"
+    },
+    {
         "parentID": "HERO_08a",
         "specialID": "GVG_003",
         "action": "When Played"

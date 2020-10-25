@@ -21,7 +21,8 @@ const SetList = ({ navigation }) => {
         renderItem={({ item }) => (
           <TouchableWithoutFeedback onPress= {e => {
               navigation.navigate('Cards', {
-                cardSet: item.set
+                cardSet: item.set,
+                cardID: ''
               })
             }
           }>
